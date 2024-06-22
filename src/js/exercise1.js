@@ -1,5 +1,7 @@
-const { notice } = PNotify;
-PNotify.defaultModules.set(PNotifyMobile, {});
+import { notice, defaultModules } from "@pnotify/core";
+import * as PNotifyMobile from "@pnotify/mobile";
+import "@pnotify/core/dist/PNotify.css";
+defaultModules.set(PNotifyMobile, {});
 
 const keys = ["A", "S", "D", "F", "J", "K", "L", ";", "W", "E"];
 let currentKeyIndex = 0;

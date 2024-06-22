@@ -1,3 +1,30 @@
+import {
+  Chart,
+  LineController,
+  LineElement,
+  Tooltip,
+  BarController,
+  BarElement,
+  CategoryScale,
+  PointElement,
+  LinearScale,
+  Title,
+  ScatterController,
+} from "chart.js";
+Chart.register(
+  LineController,
+  ScatterController,
+  BarController,
+  BarElement,
+  CategoryScale,
+  Tooltip,
+  LineElement,
+  PointElement,
+  LinearScale,
+  Title
+);
+window["Chart"] = Chart;
+
 const chartData = {
   labels: [
     "1",
