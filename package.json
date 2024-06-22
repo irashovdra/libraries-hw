@@ -1,19 +1,23 @@
 {
+  "homepage": "https://irashovdra.github.io/libraries-hw/",
   "name": "libraries-hw",
   "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "parcel ./src/index.html --no-cache",
-    "build": "parcel build ./src/index.html --no-cache"
+    "build": "parcel build ./src/index.html --no-cache --public-url /libraries-hw/",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@pnotify/core": "^5.2.0",
+    "@pnotify/mobile": "^5.2.0",
     "chart.js": "^4.4.3",
+    "gh-pages": "^6.1.1",
     "pnotify": "^5.2.0"
   },
   "devDependencies": {
