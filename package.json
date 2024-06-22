@@ -7,6 +7,7 @@
   "description": "",
   "scripts": {
     "start": "parcel ./src/index.html --no-cache",
+    "predeploy": "npm run build",
     "build": "parcel build ./src/index.html --no-cache --public-url /libraries-hw/",
     "deploy": "gh-pages -d dist"
   },
