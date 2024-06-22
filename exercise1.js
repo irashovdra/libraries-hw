@@ -1,45 +1,52 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const keys = ["A", "S", "D", "F", "G", "H", "J", "K", "L", ";"];
-  let currentKeyIndex = 0;
+const { notice } = PNotify;
+PNotify.defaultModules.set(PNotifyMobile, {});
 
-  const keyElement = document.getElementById("key");
-  const newGameButton = document.getElementById("newGameButton");
+const keys = ["A", "S", "D", "F", "J", "K", "L", ";", "W", "E"];
+let currentKeyIndex = 0;
 
-  function setNewKey() {
-    currentKeyIndex = Math.floor(Math.random() * keys.length);
-    keyElement.textContent = keys[currentKeyIndex];
-  }
+const keyElement = document.getElementById("key");
+const newGameButton = document.getElementById("new-game");
 
-  function handleKeydown(event) {
-    if (event.key.toUpperCase() === keys[currentKeyIndex]) {
-      PNotify.success({
-        text: "Правильна клавіша!",
-        delay: 2000,
-      });
-      setNewKey();
+function updateKey() {
+  keyElement.textContent = keys[currentKeyIndex];
+}
+
+function startNewGame() {
+  currentKeyIndex = 0;
+  updateKey();
+  notice({
+    text: "Гра почалася! Натисніть правильну клавішу.",
+    type: "info",
+    delay: 2000,
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  const pressedKey = event.key.toUpperCase();
+  if (pressedKey === keys[currentKeyIndex]) {
+    currentKeyIndex++;
+    if (currentKeyIndex < keys.length) {
+      updateKey();
     } else {
-      PNotify.error({
-        text: "Неправильна клавіша. Спробуйте ще раз!",
+      notice({
+        text: "Ви виграли! Почніть нову гру.",
+        type: "success",
         delay: 2000,
       });
     }
-  }
-
-  function handleKeypress(event) {
-    event.preventDefault();
-  }
-
-  newGameButton.addEventListener("click", () => {
-    PNotify.info({
-      text: "Нова гра розпочата!",
+  } else {
+    notice({
+      text: "Неправильна клавіша! Спробуйте ще раз.",
+      type: "error",
       delay: 2000,
     });
-    setNewKey();
-  });
-
-  document.addEventListener("keydown", handleKeydown);
-  document.addEventListener("keypress", handleKeypress);
-
-  // Перший виклик для встановлення початкової клавіші
-  setNewKey();
+  }
 });
+
+document.addEventListener("keypress", (event) => {
+  event.preventDefault();
+});
+
+newGameButton.addEventListener("click", startNewGame);
+
+startNewGame();
