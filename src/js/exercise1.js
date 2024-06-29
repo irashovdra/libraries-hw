@@ -1,6 +1,8 @@
 import { notice, defaultModules } from "@pnotify/core";
 import * as PNotifyMobile from "@pnotify/mobile";
 import "@pnotify/core/dist/PNotify.css";
+import { showMessage } from "./test2";
+
 defaultModules.set(PNotifyMobile, {});
 
 const keys = ["A", "S", "D", "F", "J", "K", "L", ";", "W", "E"];
@@ -52,3 +54,5 @@ document.addEventListener("keypress", (event) => {
 newGameButton.addEventListener("click", startNewGame);
 
 startNewGame();
+
+showMessage();
